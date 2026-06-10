@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Social -->
+    <title>Optimum Hub • Community Platform</title>
+    <meta name="description" content="The community hub for Optimum — connect with the team, node operators, and builders accelerating blockchain data movement.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Optimum Hub • Community Platform">
+    <meta property="og:description" content="Connect with the Optimum team and builders. A community-built platform for node operators and developers.">
+    <meta property="og:image" content="https://pbs.twimg.com/profile_images/2041555783922675712/Y-FMRQHf.jpg">
+    <meta property="og:url" content="https://optimum-hub.vercel.app">
+    <meta property="og:type" content="website">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://pbs.twimg.com/profile_images/2041555783922675712/Y-FMRQHf.jpg">
+    
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --surface: #111114;
+            --accent: #00f0ff;
+        }
+        
+        body {
+            background-color: #0a0a0f;
+            color: #f4f4f5;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.032);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), 
+                       box-shadow 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .glass:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 16px 50px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        }
+        
+        .glass-premium {
+            background: linear-gradient(145deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 12px 48px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+        
+        .nav-link {
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #00f0ff;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #00f0ff;
+            transition: width 0.2s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 42px;
+            height: 2px;
+            background: linear-gradient(to right, #00f0ff, transparent);
+        }
+        
+        .team-card, .member-card, .event-card, .update-card {
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .modal {
+            animation: modalPop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: scale(0.82) translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .optimum-gradient {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .community-badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+        
+        .verified-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            animation: pulse-verified 2s infinite;
+        }
+        
+        @keyframes pulse-verified {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); }
+            70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+        }
+        
+        .wallet-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .wallet-btn:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .post-card {
+            transition: all 0.2s ease;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .metric {
+            transition: transform 0.2s ease;
+        }
+        
+        .metric:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0f] text-zinc-100 smooth-scroll">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 border-b border-white/10 bg-[#0a0a0f]/95 backdrop-blur-2xl">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <!-- Optimum Logo -->
+                <div class="flex items-center gap-x-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center border border-white/20">
+                        <i class="fa-solid fa-infinity text-[#00f0ff] text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-xl tracking-tight">Optimum</span>
+                        <span class="text-xs text-zinc-500 block -mt-1">Hub</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center gap-x-8 text-sm">
+                <a href="#updates" class="nav-link text-zinc-400 hover:text-white text-sm">Updates</a>
+                <a href="#team" class="nav-link text-zinc-400 hover:text-white text-sm">Team</a>
+                <a href="#community" class="nav-link text-zinc-400 hover:text-white text-sm">Community</a>
+                <a href="#events" class="nav-link text-zinc-400 hover:text-white text-sm">Events</a>
+                <a href="#resources" class="nav-link text-zinc-400 hover:text-white text-sm">Resources</a>
+            </div>
+            
+            <div class="flex items-center gap-x-3">
+                <!-- Community Built Badge -->
+                <div class="hidden sm:flex items-center gap-x-1.5 px-3 py-1 rounded-full text-xs font-medium community-badge">
+                    <i class="fa-solid fa-users text-xs"></i>
+                    <span>Community Built</span>
+                </div>
+                
+                <!-- Real Wallet Connect -->
+                <div class="relative">
+                    <button onclick="connectWallet()" 
+                            id="wallet-btn"
+                            class="wallet-btn flex items-center gap-x-2 px-4 py-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium transition-all active:scale-[0.985]">
+                        <i class="fa-solid fa-wallet"></i>
+                        <span id="wallet-text">Connect Wallet</span>
+                    </button>
+                    
+                    <!-- Verified status indicator (shown when connected) -->
+                    <div id="verified-pill" class="hidden absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold verified-badge flex items-center gap-x-1">
+                        <i class="fa-solid fa-check text-[9px]"></i>
+                        <span>Verified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero -->
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
+        <div class="inline-flex items-center gap-x-2 px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs mb-6">
+            <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            <span class="text-emerald-400 font-medium">Live on Hoodi Testnet</span>
+        </div>
+        
+        <h1 class="text-6xl md:text-7xl font-semibold tracking-tighter mb-4 leading-none">
+            Welcome to<br>
+            <span class="optimum-gradient">Optimum Hub</span>
+        </h1>
+        
+        <p class="text-xl text-zinc-400 max-w-md mx-auto mb-8">
+            Data movement sets the ceiling.<br>
+            <span class="text-white">Optimum raises it.</span>
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#community" 
+               class="px-8 py-3.5 rounded-3xl bg-white text-black font-semibold text-sm flex items-center justify-center gap-x-2 hover:bg-zinc-200 active:scale-[0.985] transition-all">
+                <span>Join the Community</span>
+            </a>
+            <a href="#team" 
+               class="px-8 py-3.5 rounded-3xl border border-white/20 hover:bg-white/5 font-medium text-sm flex items-center justify-center gap-x-2 transition-all active:scale-[0.985]">
+                <span>Meet the Team</span>
+            </a>
+        </div>
+        
+        <div class="mt-8 flex justify-center gap-x-8 text-xs text-zinc-500">
+            <div class="metric"><span class="font-medium text-white">4,200+</span> Members</div>
+            <div class="metric"><span class="font-medium text-white">180+</span> Flexnodes</div>
+            <div class="metric"><span class="font-medium text-white">40+</span> Testnet Partners</div>
+        </div>
+    </div>
+    
+    <!-- Latest Updates -->
+    <div id="updates" class="max-w-7xl mx-auto px-6 pb-16">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight section-title">Latest Updates</h2>
+                <p class="text-zinc-400 mt-2">What's happening at Optimum right now • June 10, 2026</p>
+            </div>
+            <a href="https://x.com/get_optimum" target="_blank" 
+               class="hidden md:flex items-center text-sm text-zinc-400 hover:text-white transition-colors">
+                Follow @get_optimum <i class="fa-brands fa-x-twitter ml-2"></i>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            
+            <!-- Update 1 -->
+            <div class="update-card glass rounded-3xl p-6">
+                <div class="flex items-center gap-x-2 mb-3">
+                    <i class="fa-brands fa-x-twitter text-[#00f0ff]"></i>
+                    <span class="text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-white/70">Jun 9, 2026</span>
+                </div>
+                <h4 class="font-semibold mb-2">New deep dive: RLNC Fast Lane Economics</h4>
+                <p class="text-sm text-zinc-400 mb-4">Detailed thread explaining how the fast lane improves decoding probability, pricing per shard, and why consistent low latency directly impacts validator rewards on Ethereum.</p>
+                <a href="https://x.com/get_optimum/status/2064432489909907689" target="_blank" 
+                   class="text-xs text-[#00f0ff] hover:underline flex items-center gap-x-1 transition-colors">
+                    Read full thread <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            </div>
+            
+            <!-- Update 2 -->
+            <div class="update-card glass rounded-3xl p-6">
+                <div class="flex items-center gap-x-2 mb-3">
+                    <i class="fa-solid fa-server text-emerald-400"></i>
+                    <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400">Live</span>
+                </div>
+                <h4 class="font-semibold mb-2">mump2p on Hoodi Testnet • 40+ Partners</h4>
+                <p class="text-sm text-zinc-400 mb-4">Optimum's data propagation layer is live on Ethereum Hoodi testnet with major operators: Everstake, P2P.org, Blockdaemon, Infstones, Luganodes, Ebunker & more. $24B ETH stake connected.</p>
+                <div class="text-xs text-emerald-400">Mainnet benchmarks ongoing →</div>
+            </div>
+            
+            <!-- Update 3 -->
+            <div class="update-card glass rounded-3xl p-6">
+                <div class="flex items-center gap-x-2 mb-3">
+                    <i class="fa-solid fa-microphone text-[#00f0ff]"></i>
+                    <span class="text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-white/70">Apr 2026</span>
+                </div>
+                <h4 class="font-semibold mb-2">CPO Sajida Zouarhi at EthCC[9]</h4>
+                <p class="text-sm text-zinc-400 mb-4">Presented on how latency shapes user behavior, market structure, and why reducing it is critical for Ethereum's validator economics and future protocol upgrades like shorter slot times.</p>
+                <a href="https://www.getoptimum.xyz/" target="_blank" 
+                   class="text-xs text-[#00f0ff] hover:underline transition-colors">Watch insights on getoptimum.xyz →</a>
+            </div>
+            
+        </div>
+        
+        <div class="mt-4 text-center">
+            <p class="text-xs text-zinc-500">For real-time updates, follow <a href="https://x.com/get_optimum" target="_blank" class="text-[#00f0ff] hover:underline">@get_optimum</a> on X • Community-curated from official sources</p>
+        </div>
+    </div>
+    
+    <!-- Meet the Team -->
+    <div id="team" class="max-w-7xl mx-auto px-6 pb-16">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight section-title">Meet the Team</h2>
+                <p class="text-zinc-400 mt-2">The people building the future of data acceleration</p>
+            </div>
+            <a href="https://www.getoptimum.xyz/team" target="_blank" 
+               class="hidden md:flex items-center text-sm text-zinc-400 hover:text-white transition-colors">
+                View full team <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div onclick="showTeamModal(0)" class="team-card glass rounded-3xl p-6 cursor-pointer active:scale-[0.985] transition-transform">
+                <div class="flex items-center gap-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-zinc-800 flex items-center justify-center text-xl font-bold">MM</div>
+                    <div>
+                        <div class="font-semibold">Prof. Muriel Médard</div>
+                        <div class="text-xs text-emerald-400">CEO & Co-Founder</div>
+                    </div>
+                </div>
+                <p class="text-sm text-zinc-400 line-clamp-3">NEC Chair at MIT EECS. Co-inventor of Random Linear Network Coding (RLNC). Leading Optimum's vision for high-performance blockchain data movement.</p>
+            </div>
+            
+            <div onclick="showTeamModal(1)" class="team-card glass rounded-3xl p-6 cursor-pointer active:scale-[0.985] transition-transform">
+                <div class="flex items-center gap-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-zinc-800 flex items-center justify-center text-xl font-bold">KK</div>
+                    <div>
+                        <div class="font-semibold">Dr. Kishori Konwar</div>
+                        <div class="text-xs text-emerald-400">CTO & Co-Founder</div>
+                    </div>
+                </div>
+                <p class="text-sm text-zinc-400 line-clamp-3">Expert in distributed systems, coding theory, and AI. Driving the technical architecture behind Optimum's RLNC-powered network.</p>
+            </div>
+            
+            <div onclick="showTeamModal(2)" class="team-card glass rounded-3xl p-6 cursor-pointer active:scale-[0.985] transition-transform">
+                <div class="flex items-center gap-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-zinc-800 flex items-center justify-center text-xl font-bold">KL</div>
+                    <div>
+                        <div class="font-semibold">Kent Lin</div>
+                        <div class="text-xs text-emerald-400">COO & Co-Founder</div>
+                    </div>
+                </div>
+                <p class="text-sm text-zinc-400 line-clamp-3">Former Partner at GSRV. Oversees business development, tokenomics, and ecosystem growth. Harvard MBA dropout & ex-President of Harvard Blockchain Club.</p>
+            </div>
+            
+            <div onclick="showTeamModal(3)" class="team-card glass rounded-3xl p-6 cursor-pointer active:scale-[0.985] transition-transform">
+                <div class="flex items-center gap-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-zinc-800 flex items-center justify-center text-xl font-bold">LW</div>
+                    <div>
+                        <div class="font-semibold">Lewej Whitelow</div>
+                        <div class="text-xs text-emerald-400">Senior Technical Program Manager</div>
+                    </div>
+                </div>
+                <p class="text-sm text-zinc-400 line-clamp-3">Recently joined to lead protocol development and releases. MBA, PMP, CSPO with deep experience in technical program management.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Community Hub -->
+    <div id="community" class="max-w-7xl mx-auto px-6 pb-16">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight section-title">Community Hub</h2>
+                <p class="text-zinc-400 mt-2">Connect with node operators, developers & contributors</p>
+            </div>
+            <button onclick="joinCommunity()" 
+                    class="px-5 py-2.5 rounded-2xl bg-emerald-500 hover:bg-emerald-600 active:scale-[0.985] text-sm font-semibold text-black flex items-center gap-x-2 transition-all">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Join Directory</span>
+            </button>
+        </div>
+        
+        <!-- Search + Filters -->
+        <div class="flex flex-col md:flex-row gap-3 mb-6">
+            <div class="flex-1 relative">
+                <i class="fa-solid fa-search absolute left-4 top-3.5 text-zinc-500"></i>
+                <input id="search-input" type="text" placeholder="Search members by name or handle..." 
+                       onkeyup="filterMembers()"
+                       class="w-full bg-[#111114] border border-white/10 focus:border-white/30 pl-11 py-3 rounded-2xl text-sm outline-none transition-colors">
+            </div>
+            <div class="flex gap-2 flex-wrap">
+                <button onclick="filterByRole('all')" class="role-filter active px-4 py-2 text-sm rounded-2xl border border-white/10 hover:bg-white/5 transition-all" data-role="all">All</button>
+                <button onclick="filterByRole('node')" class="role-filter px-4 py-2 text-sm rounded-2xl border border-white/10 hover:bg-white/5 transition-all" data-role="node">Node Ops</button>
+                <button onclick="filterByRole('dev')" class="role-filter px-4 py-2 text-sm rounded-2xl border border-white/10 hover:bg-white/5 transition-all" data-role="dev">Developers</button>
+                <button onclick="filterByRole('contrib')" class="role-filter px-4 py-2 text-sm rounded-2xl border border-white/10 hover:bg-white/5 transition-all" data-role="contrib">Contributors</button>
+            </div>
+        </div>
+        
+        <!-- Member Directory -->
+        <div id="member-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Populated by JS -->
+        </div>
+        
+        <!-- Community Discussions -->
+        <div class="mt-10">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="font-semibold text-xl">Community Discussions</h3>
+                    <p class="text-sm text-zinc-400">Share updates, Flexnode stories, or ask questions • Saved locally in your browser</p>
+                </div>
+            </div>
+            
+            <!-- Post Composer -->
+            <div class="glass rounded-3xl p-5 mb-5">
+                <div class="flex gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-zinc-800 flex-shrink-0 flex items-center justify-center text-sm font-bold">0x</div>
+                    <div class="flex-1">
+                        <textarea id="post-input" rows="2" placeholder="What's happening with your node or build? Share with the community..." 
+                                  class="w-full bg-transparent border border-white/10 focus:border-white/30 rounded-2xl px-4 py-3 text-sm resize-y outline-none transition-colors"></textarea>
+                        <div class="flex justify-between items-center mt-2">
+                            <button onclick="postToFeed()" 
+                                    class="px-5 py-1.5 rounded-2xl bg-white text-black text-xs font-semibold hover:bg-zinc-200 active:scale-[0.985] transition-all">
+                                Post to Community
+                            </button>
+                            <div class="text-[10px] text-zinc-500">Visible only to you (localStorage)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Posts Feed -->
+            <div id="community-feed" class="space-y-3">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Events -->
+    <div id="events" class="max-w-7xl mx-auto px-6 pb-16">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight section-title">Upcoming Events</h2>
+                <p class="text-zinc-400 mt-2">IRL meetups, AMAs, hackathons & more</p>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="event-card glass rounded-3xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-emerald-400 text-xs font-medium">FEB 18 • NYC</div>
+                        <div class="font-semibold text-lg mt-1">Optimum NYC Happy Hour</div>
+                    </div>
+                    <i class="fa-solid fa-glass-cheers text-2xl text-white/40"></i>
+                </div>
+                <p class="text-sm text-zinc-400 mb-5">Casual drinks with the team and node operators in New York.</p>
+                <button onclick="rsvpEvent(this, 'NYC Happy Hour')" 
+                        class="w-full py-2.5 rounded-2xl border border-white/20 hover:bg-white/5 active:bg-white/10 text-sm font-medium transition-all">
+                    RSVP
+                </button>
+            </div>
+            
+            <div class="event-card glass rounded-3xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-emerald-400 text-xs font-medium">FEB 25 • VIRTUAL</div>
+                        <div class="font-semibold text-lg mt-1">Flexnode Operator AMA</div>
+                    </div>
+                    <i class="fa-solid fa-headset text-2xl text-white/40"></i>
+                </div>
+                <p class="text-sm text-zinc-400 mb-5">Live Q&A with the engineering team about running Flexnodes.</p>
+                <button onclick="rsvpEvent(this, 'Flexnode AMA')" 
+                        class="w-full py-2.5 rounded-2xl border border-white/20 hover:bg-white/5 active:bg-white/10 text-sm font-medium transition-all">
+                    RSVP
+                </button>
+            </div>
+            
+            <div class="event-card glass rounded-3xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-emerald-400 text-xs font-medium">MAR 12 • BERLIN</div>
+                        <div class="font-semibold text-lg mt-1">ETHBerlin Side Event</div>
+                    </div>
+                    <i class="fa-solid fa-globe text-2xl text-white/40"></i>
+                </div>
+                <p class="text-sm text-zinc-400 mb-5">Optimum x mump2p workshop + networking at ETHBerlin.</p>
+                <button onclick="rsvpEvent(this, 'ETHBerlin Side Event')" 
+                        class="w-full py-2.5 rounded-2xl border border-white/20 hover:bg-white/5 active:bg-white/10 text-sm font-medium transition-all">
+                    RSVP
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Resources + Flexnode -->
+    <div id="resources" class="max-w-7xl mx-auto px-6 pb-20">
+        <div class="grid md:grid-cols-5 gap-5">
+            <!-- Resources -->
+            <div class="md:col-span-3 glass rounded-3xl p-8">
+                <h3 class="font-semibold text-xl mb-6 flex items-center gap-x-2">
+                    <i class="fa-solid fa-book text-[#00f0ff]"></i>
+                    <span>Resources</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+                    <a href="https://www.getoptimum.xyz/" target="_blank" class="flex items-center gap-x-3 text-zinc-300 hover:text-white group transition-colors">
+                        <i class="fa-solid fa-globe w-4"></i> 
+                        <span>Official Website</span>
+                    </a>
+                    <a href="https://docs.getoptimum.xyz/" target="_blank" class="flex items-center gap-x-3 text-zinc-300 hover:text-white group transition-colors">
+                        <i class="fa-solid fa-book w-4"></i> 
+                        <span>Documentation</span>
+                    </a>
+                    <a href="https://github.com/getoptimum" target="_blank" class="flex items-center gap-x-3 text-zinc-300 hover:text-white group transition-colors">
+                        <i class="fa-brands fa-github w-4"></i> 
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://discord.gg/getoptimum" target="_blank" class="flex items-center gap-x-3 text-zinc-300 hover:text-white group transition-colors">
+                        <i class="fa-brands fa-discord w-4"></i> 
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://x.com/get_optimum" target="_blank" class="flex items-center gap-x-3 text-zinc-300 hover:text-white group transition-colors">
+                        <i class="fa-brands fa-x-twitter w-4"></i> 
+                        <span>Twitter / X</span>
+                    </a>
+                    <a href="https://www.getoptimum.xyz/testnet" target="_blank" class="flex items-center gap-x-3 text-zinc-300 hover:text-white group transition-colors">
+                        <i class="fa-solid fa-flask w-4"></i> 
+                        <span>Testnet Info</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Flexnode Quick Start -->
+            <div class="md:col-span-2 glass rounded-3xl p-8">
+                <h3 class="font-semibold text-xl mb-4 flex items-center gap-x-2">
+                    <i class="fa-solid fa-server text-[#00f0ff]"></i>
+                    <span>Run a Flexnode</span>
+                </h3>
+                <p class="text-sm text-zinc-400 mb-5">Get started in under 2 minutes on testnet.</p>
+                
+                <button onclick="showFlexnodeModal()" 
+                        class="w-full py-3 rounded-2xl bg-white/5 hover:bg-white/10 active:bg-white/15 border border-white/10 text-sm font-medium flex items-center justify-center gap-x-2 transition-all active:scale-[0.985]">
+                    <span>View Docker Command</span>
+                    <i class="fa-solid fa-terminal"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex flex-col items-center gap-y-3">
+                <div class="text-xs text-zinc-500">
+                    Built by <span class="font-medium text-zinc-300">@0xSHUBY</span> • Community Member
+                </div>
+                <div class="text-[10px] text-zinc-600">
+                    Community-built prototype • Not official (yet)
+                </div>
+                <div class="text-[10px] text-zinc-600 mt-1">
+                    Made with ❤️ for the Optimum community • All features included
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Team Modal -->
+    <div id="team-modal" onclick="if (event.target.id === 'team-modal') hideTeamModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="glass max-w-md w-full rounded-3xl p-8 modal">
+            <div id="modal-content"></div>
+            <button onclick="hideTeamModal()" 
+                    class="mt-6 w-full py-3 rounded-2xl border border-white/10 hover:bg-white/5 active:bg-white/10 text-sm font-medium transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+    
+    <!-- Toast -->
+    <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-900 border border-white/10 px-6 py-3 rounded-2xl text-sm shadow-xl flex items-center gap-x-2 z-[200]">
+        <i class="fa-solid fa-check-circle text-emerald-400"></i>
+        <span id="toast-text"></span>
+    </div>
+    
+    <script>
+        // Tailwind + custom properties
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#00f0ff');
+        }
+        
+        // Sample community members
+        let members = [
+            { id: 1, name: "Alex Rivera", role: "node", handle: "@arivera_ops", joined: "Jan 2025" },
+            { id: 2, name: "Priya Sharma", role: "dev", handle: "@priyadev", joined: "Dec 2024" },
+            { id: 3, name: "Jordan Hale", role: "node", handle: "@jhale_node", joined: "Feb 2025" },
+            { id: 4, name: "Sam Chen", role: "contrib", handle: "@samchen", joined: "Nov 2024" },
+            { id: 5, name: "Maya Patel", role: "dev", handle: "@mayadev", joined: "Jan 2025" },
+            { id: 6, name: "Liam Torres", role: "node", handle: "@liamflex", joined: "Feb 2025" },
+        ];
+        
+        function renderMembers(filteredMembers = members) {
+            const grid = document.getElementById('member-grid');
+            grid.innerHTML = '';
+            
+            filteredMembers.forEach(member => {
+                const roleLabel = member.role === 'node' ? 'Node Operator' : 
+                                 member.role === 'dev' ? 'Developer' : 'Contributor';
+                
+                const el = document.createElement('div');
+                el.className = `member-card glass rounded-3xl p-5 flex items-center gap-x-4 cursor-pointer active:scale-[0.985] transition-transform`;
+                el.innerHTML = `
+                    <div class="w-11 h-11 rounded-2xl bg-zinc-800 flex-shrink-0 flex items-center justify-center text-lg font-semibold">
+                        ${member.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-semibold">${member.name}</div>
+                        <div class="text-xs text-zinc-400">${member.handle} • ${roleLabel}</div>
+                        <div class="text-[10px] text-zinc-500 mt-0.5">Joined ${member.joined}</div>
+                    </div>
+                `;
+                el.onclick = () => showMemberToast(member);
+                grid.appendChild(el);
+            });
+        }
+        
+        function filterMembers() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = members.filter(m => 
+                m.name.toLowerCase().includes(query) || 
+                m.handle.toLowerCase().includes(query)
+            );
+            renderMembers(filtered);
+        }
+        
+        function filterByRole(role) {
+            document.querySelectorAll('.role-filter').forEach(btn => {
+                btn.classList.remove('active', 'bg-white/10', 'border-white/30');
+                btn.classList.add('border-white/10');
+                if (btn.dataset.role === role) {
+                    btn.classList.add('active', 'bg-white/10', 'border-white/30');
+                }
+            });
+            
+            let filtered = members;
+            if (role !== 'all') {
+                filtered = members.filter(m => m.role === role);
+            }
+            renderMembers(filtered);
+        }
+        
+        function joinCommunity() {
+            const name = prompt("What's your name?");
+            if (!name) return;
+            
+            const handle = prompt("Your X / Discord handle? (e.g. @yourname)");
+            if (!handle) return;
+            
+            const roleInput = prompt("Your role? (node / dev / contrib)").toLowerCase();
+            if (!['node', 'dev', 'contrib'].includes(roleInput)) {
+                alert("Please enter: node, dev, or contrib");
+                return;
+            }
+            
+            const newMember = {
+                id: Date.now(),
+                name: name,
+                role: roleInput,
+                handle: handle.startsWith('@') ? handle : '@' + handle,
+                joined: "Just now"
+            };
+            
+            members.unshift(newMember);
+            renderMembers();
+            
+            showToast(`Welcome to the directory, ${name.split(' ')[0]}!`);
+        }
+        
+        function showMemberToast(member) {
+            showToast(`${member.name} • ${member.handle}`);
+        }
+        
+        function rsvpEvent(button, eventName) {
+            button.innerHTML = `<i class="fa-solid fa-check mr-2"></i> You're going!`;
+            button.disabled = true;
+            button.classList.add('!bg-emerald-500/20', '!border-emerald-500/40', '!text-emerald-400');
+            
+            showToast(`RSVP confirmed for ${eventName}`);
+        }
+        
+        // ========== REAL WALLET CONNECT ==========
+        let walletConnected = false;
+        let currentAccount = null;
+        
+        async function connectWallet() {
+            const btn = document.getElementById('wallet-btn');
+            const text = document.getElementById('wallet-text');
+            const verifiedPill = document.getElementById('verified-pill');
+            
+            if (!window.ethereum) {
+                showToast("MetaMask not detected. Please install MetaMask extension.");
+                // Fallback: simulate for demo purposes
+                if (confirm("MetaMask not found. Would you like to simulate connection for demo?")) {
+                    simulateWalletConnection();
+                }
+                return;
+            }
+            
+            try {
+                btn.style.pointerEvents = 'none';
+                text.innerHTML = 'Connecting...';
+                
+                const accounts = await window.ethereum.request({ 
+                    method: 'eth_requestAccounts' 
+                });
+                
+                if (accounts.length === 0) {
+                    throw new Error("No accounts found");
+                }
+                
+                currentAccount = accounts[0];
+                walletConnected = true;
+                
+                // Format address nicely
+                const shortAddress = `${currentAccount.slice(0, 6)}...${currentAccount.slice(-4)}`;
+                text.innerHTML = shortAddress;
+                
+                // Show verified pill
+                verifiedPill.classList.remove('hidden');
+                verifiedPill.classList.add('flex');
+                
+                // Success feedback
+                btn.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+                btn.style.background = 'rgba(16, 185, 129, 0.08)';
+                
+                showToast("Wallet connected successfully");
+                
+                // Offer to add as verified operator
+                setTimeout(() => {
+                    if (confirm("Would you like to add yourself to the directory as a Verified Flexnode Operator?")) {
+                        joinCommunity();
+                    }
+                }, 1400);
+                
+                // Listen for account changes
+                window.ethereum.on('accountsChanged', handleAccountsChanged);
+                
+            } catch (error) {
+                console.error(error);
+                text.innerHTML = 'Connect Wallet';
+                btn.style.pointerEvents = 'all';
+                showToast("Connection failed. Please try again.");
+            }
+        }
+        
+        function handleAccountsChanged(accounts) {
+            const text = document.getElementById('wallet-text');
+            const verifiedPill = document.getElementById('verified-pill');
+            const btn = document.getElementById('wallet-btn');
+            
+            if (accounts.length === 0) {
+                // User disconnected
+                disconnectWallet();
+            } else if (accounts[0] !== currentAccount) {
+                currentAccount = accounts[0];
+                const shortAddress = `${currentAccount.slice(0, 6)}...${currentAccount.slice(-4)}`;
+                text.innerHTML = shortAddress;
+                showToast("Account changed");
+            }
+        }
+        
+        function disconnectWallet() {
+            const text = document.getElementById('wallet-text');
+            const verifiedPill = document.getElementById('verified-pill');
+            const btn = document.getElementById('wallet-btn');
+            
+            walletConnected = false;
+            currentAccount = null;
+            
+            text.innerHTML = 'Connect Wallet';
+            btn.style.borderColor = 'rgba(255,255,255,0.1)';
+            btn.style.background = 'rgba(255,255,255,0.05)';
+            verifiedPill.classList.add('hidden');
+            verifiedPill.classList.remove('flex');
+            
+            showToast("Wallet disconnected");
+            
+            // Remove event listener
+            if (window.ethereum) {
+                window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+            }
+        }
+        
+        // Fallback simulation (for users without MetaMask)
+        function simulateWalletConnection() {
+            const text = document.getElementById('wallet-text');
+            const verifiedPill = document.getElementById('verified-pill');
+            const btn = document.getElementById('wallet-btn');
+            
+            currentAccount = "0xSHUBY.eth";
+            walletConnected = true;
+            
+            text.innerHTML = "0xSHUBY.eth";
+            verifiedPill.classList.remove('hidden');
+            verifiedPill.classList.add('flex');
+            
+            btn.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+            btn.style.background = 'rgba(16, 185, 129, 0.08)';
+            
+            showToast("Demo wallet connected (install MetaMask for real connection)");
+            
+            setTimeout(() => {
+                if (confirm("Would you like to add yourself to the directory as a Verified Flexnode Operator?")) {
+                    joinCommunity();
+                }
+            }, 1200);
+        }
+        
+        // Team data
+        const teamData = [
+            {
+                name: "Prof. Muriel Médard",
+                role: "CEO & Co-Founder",
+                bio: "NEC Chair Professor at MIT EECS. Ranked #1 globally in Network Coding. Co-inventor of Random Linear Network Coding (RLNC). Leading Optimum's mission to raise the ceiling on blockchain data movement.",
+                focus: "Vision, Research Leadership, Ecosystem"
+            },
+            {
+                name: "Dr. Kishori Konwar",
+                role: "CTO & Co-Founder",
+                bio: "Deep expertise in distributed systems, coding theory, and AI. Architecting the core protocol and technical foundation of Optimum's high-performance data acceleration network.",
+                focus: "Protocol Design, Distributed Systems, Research"
+            },
+            {
+                name: "Kent Lin",
+                role: "COO & Co-Founder",
+                bio: "Former Partner at GSRV ($4B VC). Oversees business development, tokenomics, and fundraising. Passionate about bringing high-performance infrastructure to every blockchain.",
+                focus: "Business Development, Tokenomics, Growth"
+            },
+            {
+                name: "Lewej Whitelow",
+                role: "Senior Technical Program Manager",
+                bio: "Recently joined the team to lead protocol development and releases. Brings strong experience in technical program management (PMP, CSPO). Helping ship features faster and smoother.",
+                focus: "Product Delivery, Protocol Releases, Coordination"
+            }
+        ];
+        
+        function showTeamModal(index) {
+            const modal = document.getElementById('team-modal');
+            const content = document.getElementById('modal-content');
+            const person = teamData[index];
+            
+            content.innerHTML = `
+                <div class="flex items-start gap-x-4 mb-6">
+                    <div class="w-16 h-16 rounded-2xl bg-zinc-800 flex-shrink-0 flex items-center justify-center text-3xl font-bold">
+                        ${person.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div>
+                        <div class="font-semibold text-2xl">${person.name}</div>
+                        <div class="text-emerald-400">${person.role}</div>
+                    </div>
+                </div>
+                
+                <div class="space-y-5 text-sm">
+                    <div>
+                        <div class="text-xs uppercase tracking-widest text-zinc-500 mb-1.5">ABOUT</div>
+                        <p class="text-zinc-300 leading-relaxed">${person.bio}</p>
+                    </div>
+                    
+                    <div>
+                        <div class="text-xs uppercase tracking-widest text-zinc-500 mb-1.5">FOCUS AREAS</div>
+                        <div class="text-zinc-300">${person.focus}</div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        
+        function hideTeamModal() {
+            const modal = document.getElementById('team-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+        
+        function showFlexnodeModal() {
+            const modal = document.getElementById('team-modal');
+            const content = document.getElementById('modal-content');
+            
+            content.innerHTML = `
+                <div class="mb-6">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <i class="fa-solid fa-server text-3xl text-[#00f0ff]"></i>
+                        <div>
+                            <div class="font-semibold text-2xl">Run a Flexnode</div>
+                            <div class="text-emerald-400 text-sm">Testnet • Docker</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black/40 rounded-2xl p-5 font-mono text-xs text-emerald-300 border border-white/10 mb-5">
+                        docker run -d --name optimum-flexnode \\<br>
+                        &nbsp;&nbsp;-p 8080:8080 \\<br>
+                        &nbsp;&nbsp;-e NODE_TYPE=flexnode \\<br>
+                        &nbsp;&nbsp;ghcr.io/getoptimum/flexnode:latest
+                    </div>
+                    
+                    <div class="text-xs text-zinc-400">
+                        Full guide + mump2p setup available in the 
+                        <a href="https://docs.getoptimum.xyz" target="_blank" class="text-[#00f0ff] underline">official docs</a>.
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const text = document.getElementById('toast-text');
+            
+            text.innerHTML = message;
+            toast.style.display = 'flex';
+            toast.classList.remove('hidden');
+            toast.style.opacity = '1';
+            toast.style.transition = '';
+            
+            setTimeout(() => {
+                toast.style.transition = 'all 0.3s ease';
+                toast.style.opacity = '0';
+                
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                    toast.style.transition = '';
+                    toast.style.display = 'none';
+                    toast.classList.add('hidden');
+                }, 280);
+            }, 2600);
+        }
+        
+        // ========== Community Feed (localStorage) ==========
+        let communityPosts = JSON.parse(localStorage.getItem('optimumHubPosts') || '[]');
+        
+        function renderCommunityFeed() {
+            const feed = document.getElementById('community-feed');
+            if (!feed) return;
+            
+            feed.innerHTML = '';
+            
+            if (communityPosts.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'text-center py-8 text-sm text-zinc-500 glass rounded-3xl';
+                empty.innerHTML = `
+                    <div class="flex flex-col items-center gap-y-2">
+                        <i class="fa-solid fa-comments text-2xl text-white/30"></i>
+                        <div>No posts yet. Be the first to share something!</div>
+                    </div>
+                `;
+                feed.appendChild(empty);
+                return;
+            }
+            
+            communityPosts.slice().reverse().forEach((post, index) => {
+                const el = document.createElement('div');
+                el.className = `post-card glass rounded-3xl p-5 flex gap-4`;
+                el.innerHTML = `
+                    <div class="w-9 h-9 rounded-2xl bg-zinc-800 flex-shrink-0 flex items-center justify-center text-sm font-bold">0x</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-x-2 mb-1">
+                            <span class="font-medium text-sm">You</span>
+                            <span class="text-[10px] text-zinc-500">${post.time}</span>
+                        </div>
+                        <p class="text-sm text-zinc-200 leading-relaxed">${post.text}</p>
+                        
+                        <div class="flex items-center gap-x-5 mt-3.5 text-xs">
+                            <button onclick="likePost(${index})" class="flex items-center gap-x-1.5 text-zinc-400 hover:text-red-400 transition-colors">
+                                <i class="fa-solid fa-heart"></i>
+                                <span>${post.likes || 0}</span>
+                            </button>
+                            <button onclick="deletePost(${index})" class="text-zinc-500 hover:text-red-400 transition-colors">Delete</button>
+                        </div>
+                    </div>
+                `;
+                feed.appendChild(el);
+            });
+        }
+        
+        function postToFeed() {
+            const input = document.getElementById('post-input');
+            const text = input.value.trim();
+            
+            if (!text) {
+                showToast("Please write something first");
+                return;
+            }
+            
+            const newPost = {
+                text: text,
+                time: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' • ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+                likes: 0
+            };
+            
+            communityPosts.push(newPost);
+            localStorage.setItem('optimumHubPosts', JSON.stringify(communityPosts));
+            
+            input.value = '';
+            renderCommunityFeed();
+            showToast("Posted to your community feed");
+        }
+        
+        function likePost(index) {
+            const realIndex = communityPosts.length - 1 - index;
+            if (communityPosts[realIndex]) {
+                communityPosts[realIndex].likes = (communityPosts[realIndex].likes || 0) + 1;
+                localStorage.setItem('optimumHubPosts', JSON.stringify(communityPosts));
+                renderCommunityFeed();
+            }
+        }
+        
+        function deletePost(index) {
+            const realIndex = communityPosts.length - 1 - index;
+            if (confirm("Delete this post?")) {
+                communityPosts.splice(realIndex, 1);
+                localStorage.setItem('optimumHubPosts', JSON.stringify(communityPosts));
+                renderCommunityFeed();
+            }
+        }
+        
+        // Initialize everything
+        function init() {
+            initializeTailwind();
+            
+            // Render initial members
+            renderMembers();
+            
+            // Render community feed
+            renderCommunityFeed();
+            
+            // Set initial active filter
+            const allFilter = document.querySelector('.role-filter[data-role="all"]');
+            if (allFilter) allFilter.classList.add('bg-white/10', 'border-white/30');
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '?') {
+                    showToast("Thanks for exploring Optimum Hub!");
+                }
+                if (e.key.toLowerCase() === 'w' && e.metaKey) {
+                    e.preventDefault();
+                    connectWallet();
+                }
+            });
+            
+            // Mobile search scroll improvement
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('focus', () => {
+                    if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                            document.getElementById('community').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 300);
+                    }
+                });
+            }
+            
+            // Welcome hint in console
+            console.log('%c[Optimum Hub] Premium v3 loaded. Press "?" for hint. Cmd/Ctrl + W to connect wallet.', 'color:#555');
+        }
+        
+        // Boot the app
+        window.onload = init;
+    </script>
+</body>
+</html>
